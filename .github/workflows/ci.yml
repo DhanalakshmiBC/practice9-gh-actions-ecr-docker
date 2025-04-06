@@ -31,6 +31,11 @@ jobs:
             docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
             docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
+        - name: list docker images
+          run: docker images
+        - name: list path
+          run: echo $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+
         - name: ECR Status Check
           if: steps.containerImage.outcome == 'failure'
           run: exit 1
