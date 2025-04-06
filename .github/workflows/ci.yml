@@ -35,6 +35,8 @@ jobs:
           run: docker images
         - name: list path
           run: echo $ECR_REPOSITORY
+        - name: list aws images
+          run: aws ecr list-images --repository-name "ecrdemo"  --region us-east-1
 
         - name: ECR Status Check
           if: steps.containerImage.outcome == 'failure'
